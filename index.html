@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="main.css">
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" >
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+ <title>Card_bank</title>
+</head>
+<body class="text-purple-900 font-['Space_Grotesk'] text-sm h-full">
+<main class="flex lg:justify-around sm:justify-center ">
+  <div class="bg-[url('/images/bg-main-desktop.png')] lg:min-h-screen md:w-[100em] lg:w-[38em] 2xl:w-[62em] lg:min-w-screen flex lg:justify-start w-full md:h-72 h-52 relative bg-cover md:-ml-[28em] 2xl:-ml-[52em] "></div>
+  <!-- Les 2 cartes & formulaire -->
+<div class="flex lg:flex-row flex-col container justify-center  absolute xl:mt-28 2xl:mt-6 mt-28 xl:item-center md:mt-2 px-4 md:px-12 2xl:justify-center xl:items-center">
+<!-- Les 2 cartes  -->
+<div class="flex lg:flex-col flex-col-reverse lg:w-[40em] lg:mx-3  ">
+   <!-- Carte recto avec numero -->
+<div class="card_recto bg-[url('/images/bg-card-front.png')] lg:h-60 lg:w-[30em] md:h-96 md:w-full rounded-xl lg:mt-12 -mt-[5.2em] sm:h-[20em] md:-ml-4 md:-mt-40 sm:-mt-28  mr-8 z-10 text-white px-2  sm:mb-6  bg-auto bg-center h-[12em] bg-cover ">
+ <div class="flex space-x-2 items-center ml-2 md:pt-2 pt-[0.5em] ">
+   <!-- Circle -->
+   <div class="rounded-full sm:w-14 sm:h-14 lg:w-14 lg:h-14 w-8 h-8 md:w-20 md:h-20  bg-white lg:mt-2 md:mt-8 mt-4"></div>
+   <div class="rounded-full sm:w-10 sm:h-10 lg:w-10 lg:h-10  w-4 h-4 border border-white lg:mt-2 md:mt-8 mt-4"></div>
+ </div>
+ <div class=" lg:mt-[5.2em] sm:mt-[7em] mt-[2.6em] md:mt-[10em] mt-[2.6em]" >
+   <h1 class="text-start ml-4 lg:text-3xl sm:text-4xl text-xl md:text-4xl " id="number_card">9591  6489  6389  1012</h1>
+<div class="flex justify-between mx-4 mt-1 text-sm sm:text-md sm:mt-3 md:text-xl md:mt-6 lg:mt-2 lg:text-lg ">
+    <h2 class="firstName">FELICIA LEIRE</h2>
+    <p><span class='month'>09</span>/<span class='year'>00</span></p>
+</div>
+ </div>
+  
+</div>
+ <!-- Carte verso avec barre noire-->
+<div class="card_verso md:w-[32em] bg-[url('/images/bg-card-back.png')] md:h-96 md:w-full lg:h-52 lg:w-[28em] lg:h-[15.3em] h-44 rounded-xl md:mt-8 lg:ml-20 relative md:ml-4 ml-10  sm:h-[20em] -mt-24 bg-auto bg-center bg-cover md:bg-cover lg:bg-contain ">
+ <h2 class="flex justify-end text-start lg:mt-24 md:mt-44 mt-[5.1em] lg:text-xl text-white lg:mr-12 mr-8 text-md sm:text-2xl sm:mr-16 cvc">000</h2>
+</div>
+</div>
+ <!-- Les formulaires  -->
+<div class="form_for_card">
+   <form  class="check_form form_card flex flex-col lg:ml-24 md:px-6 md:mt-2 px-2 lg:mt-32 md:my-12 mt-6 sm:text-xl lg:text-2xl  ">
+<div class="flex flex-col box_firstname">
+  <label for="card_name" class="md:mt-4" >CARDHOLDER NAME</label>
+<input type="text" name="card_name" id="card_name" placeholder="&nbsp;&nbsp;e.g Jane Applseed" class="border border-purple-900 h-12 rounded-xl mt-1">
+<p class="text-red-500 hidden wrong_letter "> Wrong format, letter only</p>
+</div>
+
+
+<label for="card_number_input" class="mt-4">CARD NUMBER</label>
+<input type="text" name="card_number" id="card_number_input" maxlength="16" placeholder="&nbsp;&nbsp;e.g 1234 5678 9123 000" class="border border-purple-900 h-12 rounded-xl mt-1">
+<p class="text-red-500 hidden wrong_number "> Wrong format, number only</p>
+<!-- Inputs date expiration with number CVC -->
+<div class="flex justify-between sm:justify-evenly md:justify-between md:w-full sm:w-[20em] space-x-2 my-4 ">
+  <div class="flex flex-col">
+  <label for="card_name" class="">EXP. DATE (MM/YY)</label>
+ 
+<div class="flex space-x-2">
+
+ <div>
+   <input type="number" placeholder="&nbsp;&nbsp;MM" min="1" max="12" id="month" class="border border-purple-900 rounded-md h-10 w-24 md:w-40 mt-1 month_card xl:h-14">
+    <p class="text-red-600 hidden text-sm month_error"></p>
+  </div>
+ 
+  <div>
+    <input type="number" placeholder="&nbsp;&nbsp;YY" min="23" max="99" id="year"  class="border border-purple-900 rounded-md h-10 w-24 md:w-40 mt-1 year_card xl:h-14">
+    <p class="text-red-600 hidden text-sm year_error"></p>
+  </div>
+</div>
+
+</div>
+<div class="sm:flex sm:flex-col sm:w-1/2">
+    <label for="card_name" class="sm:mt-0 mt-4">CVC</label>
+    <input type="text" pattern="0*([1-9][0-9]{0,2}|0[1-9][0-9]|00[1-9])" maxlength="3" required placeholder="&nbsp;&nbsp;e.g. 123" class="xl:h-14 cvc_number border border-purple-900 rounded-md h-10 lg:w-90 mt-1 w-full   ">
+    <p class="text-red-600 hidden wrong_cvc text-sm cvc_error">Can't be blank</p>
+  
+  </div>
+  
+</div>
+<input type="submit" value="Confirm" class="btn_confirm bg-slate-900 text-white rounded-md sm:rounded-xl  h-12 mt-1">
+
+
+  </form>
+</div>
+</div>
+<div>
+ 
+</div>
+</main>
+
+  <script src='script.js'></script>
+</body>
+</html>

@@ -52,14 +52,6 @@ let obj_card:data_card = {
   year_exp: 0,
   cvc_exp: 0
 }
-// let obj_card:data_card = {
-//   number_card: '1234 5678 9123 000',
-//   name_card: 'FELICIA LEIRE',
-//   month_exp: 3,
-//   year_exp: 23,
-//   cvc_exp: 123
-// }
-
 
 /**
  * Create function global for number card and the name on the card (recto)
@@ -108,7 +100,6 @@ card_name?.addEventListener('input',(event)=> {
   }
 }
 )
-
 
 /**
  * Add the number on the card(recto)

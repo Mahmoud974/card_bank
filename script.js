@@ -1,6 +1,6 @@
 var month_card = document.querySelector('.month_card'), number_card = document.querySelector('#number_card'), card_number_input = document.querySelector('#card_number_input'), card_name = document.querySelector('#card_name'), firstName = document.querySelector('.firstName'), wrong_letter = document.querySelector('.wrong_letter'), wrong_number = document.querySelector('.wrong_number'), wrong_cvc = document.querySelector('.wrong_cvc'), box_firstname = document.querySelector('.box_firstname'), year_card = document.querySelector('.year_card'), year_display_card = document.querySelector('.year'), cvc = document.querySelector('.cvc'), month_display_card = document.querySelector('.month'), check_form = document.querySelector('.check_form'), cvc_number = document.querySelector('.cvc_number'), month_error = document.querySelector('.month_error'), year_error = document.querySelector('.year_error'), btn_confirm = document.querySelector('.btn_confirm'), form_for_card = document.querySelector('.form_for_card');
 //Create any balises with the function createElement for addEventListener submit the form
-var create_bloc = document.createElement('div'), create_bloc_for_round_and_title = document.createElement('div'), create_circle = document.createElement('div'), create_check = document.createElement('i'), create_title = document.createElement('h3'), add_details = document.createElement('p'), inputBtn = document.createElement('input');
+var create_bloc = document.createElement('div'), create_bloc_for_round_and_title = document.createElement('div'), create_circle = document.createElement('div'), create_check = document.createElement('i'), create_title = document.createElement('h3'), add_details = document.createElement('p'), btn_confirm_reload = document.createElement('button');
 var display_on_card, display_expiration_date, regex_name = /^[a-zA-Z]+(?:\s[a-zA-Z]+)?$/, regex_number = /^[0-9]+$/, quantity_two = /^\d{1,2}$/, firstNameOrNumbeCard, stack_number_card, target_Number, type_on_input, wrong_letter_html;
 var storage_in_obj;
 var obj_card = {
@@ -56,7 +56,7 @@ card_name === null || card_name === void 0 ? void 0 : card_name.addEventListener
     if (type_on_input.value.toUpperCase().length > 22) {
         if (wrong_letter instanceof HTMLElement) {
             wrong_letter.className = "text-orange-400";
-            wrong_letter.innerHTML = "16 characters minimum";
+            wrong_letter.innerHTML = "22 words required";
         }
     }
 });
@@ -65,6 +65,16 @@ card_name === null || card_name === void 0 ? void 0 : card_name.addEventListener
  */
 card_number_input === null || card_number_input === void 0 ? void 0 : card_number_input.addEventListener('input', function (event) {
     global_input(event, regex_number, false, number_card, wrong_number);
+    console.log(type_on_input.value.length);
+    if (type_on_input.value.length < 16) {
+        if (wrong_number instanceof HTMLElement) {
+            if (wrong_number instanceof HTMLElement) {
+                wrong_number.className = "text-orange-400";
+                wrong_number.innerHTML = "16 words required";
+            }
+        }
+        ;
+    }
     //  console.log('number ' + storage_in_obj);
 });
 /**
@@ -103,6 +113,12 @@ var expiration_date = function (event, getMonthOrYear, displayMonthOrYear, err_e
 month_card === null || month_card === void 0 ? void 0 : month_card.addEventListener('change', function (event) {
     expiration_date(event, Number(String(new Date().getMonth())), month_display_card, month_error, null);
     obj_card.month_exp;
+    if (+target_Number.value > 12) {
+        if (month_error instanceof HTMLElement) {
+            month_error.className = 'flex text-red-600';
+            month_error.innerHTML = "Can't be blank";
+        }
+    }
 });
 /**
  * Display the year on the card (recto)
@@ -145,25 +161,25 @@ check_form === null || check_form === void 0 ? void 0 : check_form.addEventListe
     create_bloc.append(create_bloc_for_round_and_title);
     create_bloc_for_round_and_title.append(create_circle, create_title);
     create_circle.append(create_check);
-    create_bloc.append(add_details, inputBtn);
+    create_bloc.append(add_details, btn_confirm_reload);
     console.log(!obj_card.number_card || !obj_card.name_card || !obj_card.month_exp || !obj_card.cvc_exp || !obj_card.year_exp);
-    if (obj_card.number_card === '' || obj_card.name_card === "" || !obj_card.month_exp || !obj_card.cvc_exp || !obj_card.year_exp) {
-        confirm('Veuillez remplir correctement le formulaire !');
-    }
-    else {
-        check_form.remove();
-        //Create className for element from DOM
-        create_bloc.className = 'text-center flex flex-col justify-center mt-8 space-y-6 w-[36em]';
-        create_bloc_for_round_and_title.className = 'text-center flex flex-col justify-center space-y-6';
-        create_circle.className = 'bg-gradient-to-t from-blue-600 to-purple-700 h-[2.5em] w-[2.5em] rounded-full p-10 mx-auto mt-4';
-        create_check.className = 'text-center fa-solid fa-check text-white text-3xl flex justify-center align-center -mt-4';
-        create_title.className = 'uppercase text-4xl font-bold mt-12';
-        add_details.className = 'text-lg text-slate-400';
-        inputBtn.className = 'btn_confirm bg-slate-900 text-white rounded-md h-12 px-12 w-full mx-auto lg:mt-12';
-        //Add any attributs and innerHTML
-        create_title.innerHTML = "Thank you!";
-        add_details.innerHTML = "We ve added your card details";
-        inputBtn.setAttribute('type', 'submit');
-        inputBtn.setAttribute('value', 'Confirm');
-    }
+    check_form.remove();
+    //Create className for element from DOM
+    create_bloc.className = 'text-center flex flex-col justify-center mt-8 space-y-6 w-[36.9em]';
+    create_bloc_for_round_and_title.className = 'text-center flex flex-col justify-center space-y-6';
+    create_circle.className = 'bg-gradient-to-t from-blue-600 to-purple-700 h-[2.5em] w-[2.5em] rounded-full p-10 mx-auto mt-4';
+    create_check.className = 'text-center fa-solid fa-check text-white text-3xl flex justify-center align-center -mt-4';
+    create_title.className = 'uppercase text-4xl font-bold mt-12';
+    add_details.className = 'text-lg text-slate-400';
+    btn_confirm_reload.className = 'btn_confirm bg-slate-900 text-white rounded-md h-12 px-12 md:w-full w-1/2 mx-auto lg:mt-12';
+    //Add any attributs and innerHTML
+    create_title.innerHTML = "Thank you!";
+    add_details.innerHTML = "We ve added your card details";
+    btn_confirm_reload.innerHTML = 'Continue';
+    btn_confirm_reload.setAttribute('type', 'submit');
+    btn_confirm_reload.setAttribute('value', 'Confirm');
+});
+//Reload the page
+btn_confirm_reload === null || btn_confirm_reload === void 0 ? void 0 : btn_confirm_reload.addEventListener('click', function () {
+    window.location.reload();
 });

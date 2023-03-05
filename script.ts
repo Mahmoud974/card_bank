@@ -16,7 +16,7 @@ cvc_number:HTMLElement | null = document.querySelector('.cvc_number'),
 month_error:HTMLElement | null = document.querySelector('.month_error'),
 year_error:HTMLElement | null = document.querySelector('.year_error'),
 btn_confirm:HTMLElement | null = document.querySelector('.btn_confirm'),
-form_for_card:HTMLElement | null = document.querySelector('.form_for_card');
+form_for_card:HTMLElement | null = document.querySelector('.form_for_card')
 
 //Create any balises with the function createElement for addEventListener submit the form
 let create_bloc: HTMLDivElement = document.createElement('div'),
@@ -25,7 +25,7 @@ create_circle: HTMLDivElement = document.createElement('div'),
 create_check: HTMLElement = document.createElement('i'),
 create_title: HTMLDivElement = document.createElement('h3'),
 add_details: HTMLDivElement = document.createElement('p'),
-inputBtn:HTMLInputElement = document.createElement('input')
+btn_confirm_reload:HTMLButtonElement = document.createElement('button')
 
 let display_on_card:any,
 display_expiration_date,
@@ -98,12 +98,12 @@ else {
 card_name?.addEventListener('input',(event)=> {
   global_input(event, regex_name, true, firstName, wrong_letter)
 //  console.log('name ' + storage_in_obj);
- 
   
   if(type_on_input.value.toUpperCase().length > 22 ){
     if(wrong_letter instanceof HTMLElement){
       wrong_letter.className = "text-orange-400";
-     wrong_letter.innerHTML = "16 characters minimum"
+     wrong_letter.innerHTML = "22 words required"
+
 }
   }
 }
@@ -115,6 +115,16 @@ card_name?.addEventListener('input',(event)=> {
  */
 card_number_input?.addEventListener('input',(event)=>{
   global_input(event,regex_number, false, number_card, wrong_number)
+  console.log(type_on_input.value.length);
+  
+  if(type_on_input.value.length < 16){
+  if(wrong_number instanceof HTMLElement) {
+   if(wrong_number instanceof HTMLElement){
+      wrong_number.className = "text-orange-400"
+     wrong_number.innerHTML = "16 words required"
+}
+  };
+}
   //  console.log('number ' + storage_in_obj);
 })
 
@@ -155,7 +165,14 @@ console.log(dateFormate);
 month_card?.addEventListener('change',(event)=> {
   expiration_date(event, Number(String(new Date().getMonth())), month_display_card, month_error, null)
 obj_card.month_exp
-
+if(+target_Number.value > 12){
+if( month_error instanceof HTMLElement){
+  month_error.className = 'flex text-red-600';
+    month_error.innerHTML = "Can't be blank";
+   
+    
+  }
+}
 
 
 
@@ -197,10 +214,7 @@ if(cvc){
     cvc.innerHTML =target_Number.value;
     obj_card.cvc_exp = target_Number.value
 
-    
-    
-    
-  }}
+}}
 })
 
 
@@ -214,31 +228,28 @@ form_for_card?.append(create_bloc)
 create_bloc.append(create_bloc_for_round_and_title)
 create_bloc_for_round_and_title.append(create_circle,create_title )
 create_circle.append(create_check)
-create_bloc.append(add_details, inputBtn)
+create_bloc.append(add_details, btn_confirm_reload)
 console.log(!obj_card.number_card || !obj_card.name_card || !obj_card.month_exp || !obj_card.cvc_exp || !obj_card.year_exp );
-
-
-if(obj_card.number_card === '' || obj_card.name_card ==="" || !obj_card.month_exp || !obj_card.cvc_exp || !obj_card.year_exp ){
-confirm('Veuillez remplir correctement le formulaire !')
-
-}else{
-  check_form.remove()
+check_form.remove()
   //Create className for element from DOM
-create_bloc.className = 'text-center flex flex-col justify-center mt-8 space-y-6 w-[36em]';
+create_bloc.className = 'text-center flex flex-col justify-center mt-8 space-y-6 w-[36.9em]';
 create_bloc_for_round_and_title.className = 'text-center flex flex-col justify-center space-y-6';
 create_circle.className = 'bg-gradient-to-t from-blue-600 to-purple-700 h-[2.5em] w-[2.5em] rounded-full p-10 mx-auto mt-4';
 create_check.className = 'text-center fa-solid fa-check text-white text-3xl flex justify-center align-center -mt-4';
 create_title.className = 'uppercase text-4xl font-bold mt-12';
 add_details.className = 'text-lg text-slate-400';
-inputBtn.className = 'btn_confirm bg-slate-900 text-white rounded-md h-12 px-12 w-full mx-auto lg:mt-12'
+btn_confirm_reload.className = 'btn_confirm bg-slate-900 text-white rounded-md h-12 px-12 md:w-full w-1/2 mx-auto lg:mt-12'
 
   //Add any attributs and innerHTML
   create_title.innerHTML = "Thank you!"
-  add_details.innerHTML = "We ve added your card details"
-  inputBtn.setAttribute('type', 'submit');
-  inputBtn.setAttribute('value', 'Confirm');
-}
-
+  add_details.innerHTML = "We ve added your card details";
+  btn_confirm_reload.innerHTML = 'Continue'
+  btn_confirm_reload.setAttribute('type', 'submit');
+  btn_confirm_reload.setAttribute('value', 'Confirm');
+})
+//Reload the page
+btn_confirm_reload?.addEventListener('click',()=>{
+  window.location.reload()
 })
 
 
